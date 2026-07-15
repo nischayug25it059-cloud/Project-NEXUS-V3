@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "name": "Nischay Nayak",
+    "role": "Data Analyst",
+    "typing": [
+      "Python Developer",
+      "Power BI Developer",
+      "SQL Enthusiast"
+    ],
+    "resume": "",
+    "github": "",
+    "linkedin": "",
+    "image": ""
+  },
+
+  "about": {
+    "title": "",
+    "description": ""
+  },
+
+  "skills": [],
+
+  "projects": [],
+
+  "certificates": [],
+
+  "experience": [],
+
+  "contact": []
+}
