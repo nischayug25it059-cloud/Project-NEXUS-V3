@@ -1,5 +1,11 @@
 import { db, auth, provider } from "../firebase/firebase.js";
 
+if (localStorage.getItem("loggedIn") !== "true") {
+
+    window.location.href = "login.html";
+
+}
+
 console.log("Firebase Connected");
 console.log(db);
 console.log(auth);
