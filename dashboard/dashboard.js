@@ -1,5 +1,5 @@
 import { db, auth, provider } from "../firebase/firebase.js";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 if (localStorage.getItem("loggedIn") !== "true") {
 
@@ -19,9 +19,9 @@ const menuItems = document.querySelectorAll(".menu li[data-page]");
 const content = document.getElementById("content");
 
 // Load Page
-async function loadPage(page){
+async function loadPage(page) {
 
-    try{
+    try {
 
         const response = await fetch(`pages/${page}.html`);
 
@@ -29,13 +29,13 @@ async function loadPage(page){
 
         content.innerHTML = html;
 
-        if(page === "hero"){
+        if (page === "hero") {
 
             setupHeroForm();
 
         }
 
-    }catch(err){
+    } catch (err) {
 
         content.innerHTML = "<h2>Page Not Found</h2>";
 
@@ -45,11 +45,11 @@ async function loadPage(page){
 
 // Sidebar Click
 
-menuItems.forEach(item=>{
+menuItems.forEach(item => {
 
-    item.addEventListener("click",()=>{
+    item.addEventListener("click", () => {
 
-        menuItems.forEach(i=>i.classList.remove("active"));
+        menuItems.forEach(i => i.classList.remove("active"));
 
         item.classList.add("active");
 
@@ -63,7 +63,7 @@ menuItems.forEach(item=>{
 
 loadPage("dashboard-home");
 
-async function getPortfolioData(){
+async function getPortfolioData() {
 
     const response = await fetch("../data/portfolio.json");
 
@@ -71,7 +71,7 @@ async function getPortfolioData(){
 
 }
 
-async function loadDashboard(){
+async function loadDashboard() {
 
     const data = await getPortfolioData();
 
@@ -81,13 +81,42 @@ async function loadDashboard(){
 
 loadDashboard();
 
-async function setupHeroForm(){
+async function setupHeroForm() {
 
     const form = document.getElementById("heroForm");
+    const heroRef = doc(db, "portfolio", "hero");
 
-    if(!form) return;
+    await setDoc(heroRef, heroData);
 
-    form.addEventListener("submit", async(e)=>{
+    try {
+
+        const snapshot = await getDoc(heroRef);
+
+        console.log(snapshot.exists());
+        console.log(snapshot.data());
+
+        if (snapshot.exists()) {
+
+            const data = snapshot.data();
+
+            document.getElementById("heroName").value = data.name || "";
+            document.getElementById("heroRole").value = data.role || "";
+            document.getElementById("heroTyping").value = data.typing || "";
+            document.getElementById("heroGithub").value = data.github || "";
+            document.getElementById("heroLinkedin").value = data.linkedin || "";
+            document.getElementById("heroResume").value = data.resume || "";
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
+
+    }
+
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
 
         e.preventDefault();
 
@@ -107,13 +136,13 @@ async function setupHeroForm(){
 
         };
 
-        try{
+        try {
 
-            await setDoc(doc(db,"portfolio","hero"),heroData);
+            await setDoc(doc(db, "portfolio", "hero"), heroData);
 
             alert("Hero Saved Successfully 🚀");
 
-        }catch(err){
+        } catch (err) {
 
             console.error(err);
 
@@ -122,5 +151,4 @@ async function setupHeroForm(){
         }
 
     });
-
 }
