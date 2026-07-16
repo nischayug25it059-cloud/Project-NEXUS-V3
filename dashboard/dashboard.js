@@ -1,4 +1,5 @@
 import { db, auth, provider } from "../firebase/firebase.js";
+import { doc, setDoc } from "firebase/firestore";
 
 if (localStorage.getItem("loggedIn") !== "true") {
 
@@ -27,6 +28,12 @@ async function loadPage(page){
         const html = await response.text();
 
         content.innerHTML = html;
+
+        if(page === "hero"){
+
+            setupHeroForm();
+
+        }
 
     }catch(err){
 
@@ -73,3 +80,47 @@ async function loadDashboard(){
 }
 
 loadDashboard();
+
+async function setupHeroForm(){
+
+    const form = document.getElementById("heroForm");
+
+    if(!form) return;
+
+    form.addEventListener("submit", async(e)=>{
+
+        e.preventDefault();
+
+        const heroData = {
+
+            name: document.getElementById("heroName").value,
+
+            role: document.getElementById("heroRole").value,
+
+            typing: document.getElementById("heroTyping").value,
+
+            github: document.getElementById("heroGithub").value,
+
+            linkedin: document.getElementById("heroLinkedin").value,
+
+            resume: document.getElementById("heroResume").value
+
+        };
+
+        try{
+
+            await setDoc(doc(db,"portfolio","hero"),heroData);
+
+            alert("Hero Saved Successfully 🚀");
+
+        }catch(err){
+
+            console.error(err);
+
+            alert("Failed to Save");
+
+        }
+
+    });
+
+}
