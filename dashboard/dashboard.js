@@ -1,5 +1,9 @@
 import { setupHeroForm } from "./modules/hero.js";
 import { setupAboutForm } from "./modules/about.js";
+import { setupSkillsForm } from "./modules/skills.js";
+import { setupProjectsForm } from "./modules/projects.js";
+import { setupCertificatesForm } from "./modules/certificates.js";
+import { setupExperienceForm } from "./modules/experience.js";
 import { db, auth, provider } from "../firebase/firebase.js";
 
 
@@ -40,6 +44,30 @@ async function loadPage(page) {
         if (page === "about") {
 
             setupAboutForm();
+
+        }
+
+        if (page === "skills") {
+
+            setupSkillsForm();
+
+        }
+
+        if (page === "projects") {
+
+            setupProjectsForm();
+
+        }
+
+        if (page === "certificates") {
+
+            setupCertificatesForm();
+
+        }
+
+        if (page === "experience") {
+
+            setupExperienceForm();
 
         }
 

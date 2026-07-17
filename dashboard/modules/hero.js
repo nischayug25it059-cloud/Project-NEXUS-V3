@@ -1,5 +1,5 @@
 import { db } from "../../firebase/firebase.js";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { loadDocument, saveDocument } from "./utils.js";
 
 export async function setupHeroForm() {
 
@@ -11,7 +11,7 @@ export async function setupHeroForm() {
 
     try {
 
-        const snapshot = await getDoc(heroRef);
+        const data = await loadDocument(db, "portfolio", "hero");
 
         if (snapshot.exists()) {
 
