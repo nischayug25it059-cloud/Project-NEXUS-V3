@@ -15,6 +15,7 @@ export async function setupProjectsForm() {
 
     const form = document.getElementById("projectsForm");
     const projectsList = document.getElementById("projectsList");
+    let editingProjectId = null;
 
     if (!form) return;
 
@@ -123,6 +124,41 @@ export async function setupProjectsForm() {
 
             });
 
+        document.querySelectorAll(".edit-btn")
+            .forEach(button => {
+
+                button.onclick = async () => {
+
+                    const projectRef = doc(db, "projects", button.dataset.id);
+
+                    const projectSnap = await getDoc(projectRef);
+
+                    if (!projectSnap.exists()) return;
+
+                    const data = projectSnap.data();
+
+                    editingProjectId = button.dataset.id;
+
+                    document.getElementById("projectTitle").value = data.title || "";
+                    document.getElementById("projectDescription").value = data.description || "";
+                    document.getElementById("projectGithub").value = data.github || "";
+                    document.getElementById("projectDemo").value = data.demo || "";
+                    document.getElementById("projectDocs").value = data.documentation || "";
+                    document.getElementById("projectCategory").value = data.category || "web";
+                    document.getElementById("projectFeatured").value = data.featured ? "true" : "false";
+                    document.getElementById("projectTech").value =
+                        (data.technologies || []).join(",");
+
+                    document.getElementById("projectImage").value =
+                        data.image || "";
+
+                    form.querySelector("button[type='submit']").textContent =
+                        "Update Project";
+
+                };
+
+            });
+
     }
 
     await loadProjects();
@@ -134,7 +170,7 @@ export async function setupProjectsForm() {
         const imageUrl =
             document.getElementById("projectImage").value.trim();
 
-        await addDoc(collection(db, "projects"), {
+        const projectData = {
 
             title: document.getElementById("projectTitle").value,
 
@@ -152,8 +188,7 @@ export async function setupProjectsForm() {
                 document.getElementById("projectFeatured").value === "true",
 
             technologies:
-                document
-                    .getElementById("projectTech")
+                document.getElementById("projectTech")
                     .value
                     .split(",")
                     .map(t => t.trim())
@@ -163,7 +198,36 @@ export async function setupProjectsForm() {
 
             createdAt: Date.now()
 
-        });
+        };
+
+        if (editingProjectId) {
+
+            await updateDoc(
+                doc(db, "projects", editingProjectId),
+                projectData
+            );
+
+            editingProjectId = null;
+
+            alert("Project Updated ✏️");
+
+        } else {
+
+            await addDoc(
+                collection(db, "projects"),
+                projectData
+            );
+
+            alert("Project Added 🚀");
+
+        }
+
+        form.reset();
+
+        form.querySelector("button[type='submit']").textContent =
+            "Save Project";
+
+        await loadProjects();
 
         form.reset();
 
