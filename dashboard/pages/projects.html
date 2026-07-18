@@ -1,21 +1,104 @@
-<h2>Projects</h2>
+<div class="page-header">
+    <h1>Projects</h1>
+    <p>Manage your portfolio projects.</p>
+</div>
 
 <form id="projectsForm">
 
-    <label>Project Title</label>
-    <input type="text" id="projectTitle">
+    <div class="form-grid">
 
-    <label>Description</label>
-    <textarea id="projectDescription"></textarea>
+        <div class="form-group">
+            <label>Project Title</label>
+            <input type="text" id="projectTitle" placeholder="Face Recognition Attendance" required>
+        </div>
 
-    <label>GitHub Link</label>
-    <input type="url" id="projectGithub">
+        <div class="form-group">
+            <label>Project Image URL</label>
 
-    <label>Live Link</label>
-    <input type="url" id="projectLive">
+            <input type="text" id="projectImage" placeholder="images/projects/myproject.png">
+        </div>
 
-    <button type="submit">
-        Save
+        <div class="form-group">
+            <label>GitHub Link</label>
+            <input type="url" id="projectGithub" placeholder="https://github.com/...">
+        </div>
+
+        <div class="form-group">
+            <label>Live Demo</label>
+            <input type="url" id="projectDemo" placeholder="https://...">
+        </div>
+
+        <div class="form-group">
+            <label>Documentation</label>
+            <input type="url" id="projectDocs" placeholder="https://...">
+        </div>
+
+        <div class="form-group">
+
+            <label>Category</label>
+
+            <select id="projectCategory">
+
+                <option value="ai">AI</option>
+
+                <option value="data">Data Analytics</option>
+
+                <option value="web">Web Development</option>
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Featured Project</label>
+
+            <select id="projectFeatured">
+
+                <option value="false">
+                    No
+                </option>
+
+                <option value="true">
+                    Yes
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Technologies</label>
+
+        <input id="projectTech" placeholder="HTML,CSS,JavaScript,Firebase">
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Description</label>
+
+        <textarea id="projectDescription" placeholder="Write about your project..."></textarea>
+
+    </div>
+
+    <button class="save-btn">
+
+        Save Project
+
     </button>
 
 </form>
+
+<hr>
+
+<h2 style="margin:40px 0 20px;">
+
+    All Projects
+
+</h2>
+
+<div id="projectsList"></div>

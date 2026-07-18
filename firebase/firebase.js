@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBTZe8ONLkvqDcYSDx4zvczus-kxXLLwtc",
@@ -10,6 +11,8 @@ const firebaseConfig = {
   messagingSenderId: "89012047732",
   appId: "1:89012047732:web:a8b0aba1c6d9aeab41a621"
 };
+
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -23,5 +26,7 @@ const auth = getAuth(app);
 // Google Login Provider
 const provider = new GoogleAuthProvider();
 
+const storage = getStorage(app);
+
 // Export everything
-export { app, db, auth, provider };
+export { app, db, auth, provider, storage };

@@ -1,0 +1,71 @@
+/*=========================================
+            LAYOUT SYSTEM
+=========================================*/
+
+.wrapper{
+
+    width:min(var(--container),90%);
+    margin:auto;
+
+}
+
+.grid{
+
+    display:grid;
+
+}
+
+.flex{
+
+    display:flex;
+
+}
+
+.center{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.section{
+
+    position:relative;
+    overflow:hidden;
+
+}
+
+.section-title{
+
+    text-align:center;
+    margin-bottom:80px;
+
+}
+
+.section-title h2{
+
+    font-size:clamp(2.6rem,5vw,4.5rem);
+    font-weight:800;
+
+}
+
+.section-title span{
+
+    color:var(--primary);
+
+}
+
+.section-title p{
+
+    margin-top:18px;
+
+    color:var(--text-light);
+
+    font-size:1.15rem;
+
+    max-width:700px;
+
+    margin-inline:auto;
+
+}

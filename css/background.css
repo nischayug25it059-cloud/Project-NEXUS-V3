@@ -1,0 +1,351 @@
+/*=========================================
+        NEXUS AURORA ENGINE
+=========================================*/
+
+/*==============================
+GRID BACKGROUND
+==============================*/
+
+body{
+
+background-color:#050816;
+
+background-image:
+
+linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+
+linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+
+background-size:45px 45px;
+
+}
+
+.animated-bg{
+
+position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+z-index:-10;
+
+background:#050816;
+
+}
+
+.animated-bg::before,
+.animated-bg::after{
+
+content:"";
+
+position:absolute;
+
+width:80vmax;
+
+height:80vmax;
+
+border-radius:50%;
+
+filter:blur(120px);
+
+opacity:.45;
+
+mix-blend-mode:screen;
+
+animation:auroraFloat 18s ease-in-out infinite alternate;
+
+}
+
+.animated-bg::before{
+
+background:radial-gradient(circle,#2563eb 0%,transparent 70%);
+
+top:-25%;
+
+left:-20%;
+
+}
+
+.animated-bg::after{
+
+background:radial-gradient(circle,#7c3aed 0%,transparent 70%);
+
+bottom:-25%;
+
+right:-20%;
+
+animation-duration:24s;
+
+}
+
+@keyframes auroraFloat{
+
+0%{
+
+transform:translate(0,0) scale(1);
+
+}
+
+25%{
+
+transform:translate(120px,-60px) scale(1.15);
+
+}
+
+50%{
+
+transform:translate(-80px,90px) scale(.95);
+
+}
+
+75%{
+
+transform:translate(90px,60px) scale(1.2);
+
+}
+
+100%{
+
+transform:translate(-100px,-50px) scale(1);
+
+}
+
+}
+/*=========================================
+        MOUSE SPOTLIGHT
+=========================================*/
+
+.spotlight{
+
+position:fixed;
+
+width:450px;
+
+height:450px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(59,130,246,.25) 0%,
+rgba(59,130,246,.12) 30%,
+transparent 75%);
+
+pointer-events:none;
+
+left:0;
+
+top:0;
+
+transform:translate(-50%,-50%);
+
+filter:blur(40px);
+
+z-index:-1;
+
+transition:
+left .08s linear,
+top .08s linear;
+
+}
+/*=========================================
+        PARTICLE ENGINE
+=========================================*/
+
+.particles{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+z-index:-3;
+
+}
+
+.particle{
+
+position:absolute;
+
+border-radius:50%;
+
+background:#7db7ff;
+
+box-shadow:
+
+0 0 10px #3b82f6,
+
+0 0 20px #60a5fa;
+
+opacity:.5;
+
+animation:floatParticle linear infinite;
+
+}
+
+@keyframes floatParticle{
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:.8;
+
+}
+
+100%{
+
+transform:translateY(-180px);
+
+opacity:0;
+
+}
+
+}
+
+/*====================================
+NEXUS GRID
+====================================*/
+
+.bg-grid{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:-5;
+
+background:
+
+linear-gradient(
+rgba(255,255,255,.03) 1px,
+transparent 1px),
+
+linear-gradient(
+90deg,
+rgba(255,255,255,.03) 1px,
+transparent 1px);
+
+background-size:50px 50px;
+
+mask-image:radial-gradient(circle,
+white 20%,
+transparent 90%);
+
+opacity:.35;
+
+animation:gridMove 18s linear infinite;
+
+}
+
+@keyframes gridMove{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+100%{
+
+transform:translateY(50px);
+
+}
+
+}
+/* =====================================
+   MOUSE LIGHT
+===================================== */
+
+.mouse-light{
+
+    position:fixed;
+
+    width:500px;
+
+    height:500px;
+
+    border-radius:50%;
+
+    pointer-events:none;
+
+    z-index:-9;
+
+    left:0;
+
+    top:0;
+
+    transform:translate(-50%,-50%);
+
+    background:radial-gradient(
+        circle,
+        rgba(59,130,246,.16),
+        rgba(6,182,212,.08),
+        transparent 70%
+    );
+
+    filter:blur(45px);
+
+    will-change:transform;
+}
+
+/*==================================
+NEXUS STARS
+==================================*/
+
+.stars{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+z-index:-8;
+
+overflow:hidden;
+
+}
+
+.star{
+
+position:absolute;
+
+border-radius:50%;
+
+background:white;
+
+animation:twinkle linear infinite;
+
+opacity:.35;
+
+}
+
+@keyframes twinkle{
+
+0%,100%{
+
+opacity:.15;
+transform:scale(.7);
+
+}
+
+50%{
+
+opacity:1;
+transform:scale(1.35);
+
+}
+
+}

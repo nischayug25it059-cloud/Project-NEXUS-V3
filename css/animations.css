@@ -1,0 +1,140 @@
+/*=========================================
+        ANIMATIONS
+=========================================*/
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+/*=========================================
+        PROFILE RING
+=========================================*/
+
+@keyframes ringRotate{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(0deg);
+}
+
+}
+/* =====================================
+   FLOATING PROFILE
+===================================== */
+
+.profile-wrapper{
+    animation: floatProfile 4s ease-in-out infinite;
+}
+
+.profile-ring{
+    animation: rotateRing 18s linear infinite;
+}
+
+@keyframes floatProfile{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-15px);
+    }
+
+}
+
+@keyframes rotateRing{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+.hero-buttons{
+    display:flex !important;
+    gap:20px;
+    align-items:center;
+}
+
+.hero-buttons a{
+    display:inline-flex !important;
+    opacity:1 !important;
+    visibility:visible !important;
+}
+
+@keyframes glowPulse{
+
+    0%{
+
+        box-shadow:
+            0 0 20px rgba(59,130,246,.35);
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 40px rgba(59,130,246,.65);
+
+    }
+
+    100%{
+
+        box-shadow:
+            0 0 20px rgba(59,130,246,.35);
+
+    }
+
+}
+
+.primary-btn,
+.resume-btn{
+
+    animation:glowPulse 2.5s infinite;
+
+}
+/*==============================
+PAGE EXIT
+==============================*/
+
+body{
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease,
+        filter .45s ease;
+
+}
+
+body.page-exit{
+
+    opacity:0;
+
+    transform:scale(.98);
+
+    filter:blur(8px);
+
+}
