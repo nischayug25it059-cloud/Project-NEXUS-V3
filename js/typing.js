@@ -50,3 +50,7 @@ function typeEffect() {
 }
 
 typeEffect();
+
+/* hellawdoadawawdwad */
+
+/* eafeafe */
