@@ -1,16 +1,63 @@
-<h2>Experience</h2>
-
 <form id="experienceForm">
 
     <label>Company</label>
-    <input type="text" id="company">
+    <input
+        type="text"
+        id="company"
+        placeholder="MECON Limited"
+        required>
 
-    <label>Role</label>
-    <input type="text" id="role">
+    <label>Position</label>
+    <input
+        type="text"
+        id="role"
+        placeholder="Software & AI Intern"
+        required>
 
-    <label>Duration</label>
-    <input type="text" id="duration">
+    <label>Date</label>
+    <input
+        type="text"
+        id="duration"
+        placeholder="June 2026"
+        required>
 
-    <button type="submit">Save</button>
+    <label>Description</label>
+    <textarea
+        id="description"
+        rows="5"
+        placeholder="Write a short description..."
+        required></textarea>
+
+    <label>Achievements (One Per Line)</label>
+    <textarea
+        id="achievements"
+        rows="5"
+        placeholder="Face Recognition Attendance System
+House Rent Management System"></textarea>
+
+    <label>Skills (Comma Separated)</label>
+    <input
+        type="text"
+        id="skills"
+        placeholder="Python, OpenCV, SQL, DeepFace">
+
+    <label>Featured</label>
+
+    <select id="featured">
+        <option value="true">Yes ⭐</option>
+        <option value="false">No</option>
+    </select>
+
+    <button
+        type="submit"
+        class="save-btn">
+
+        Save Experience
+
+    </button>
 
 </form>
+
+<hr>
+
+<div id="experienceList"></div>

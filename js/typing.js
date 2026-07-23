@@ -51,6 +51,4 @@ function typeEffect() {
 
 typeEffect();
 
-/* hellawdoadawawdwad */
-
-/* eafeafe */
+/* /* hellawdoadawaw */

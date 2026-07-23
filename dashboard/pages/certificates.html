@@ -1,16 +1,26 @@
-<h2>Certificates</h2>
-
 <form id="certificatesForm">
 
-    <label>Certificate Name</label>
-    <input type="text" id="certificateName">
+    <input id="certificateTitle" placeholder="Certificate Title">
 
-    <label>Issued By</label>
-    <input type="text" id="certificateIssuer">
+    <input id="certificateIssuer" placeholder="Issuer">
 
-    <label>Certificate Link</label>
-    <input type="url" id="certificateLink">
+    <input type="date" id="certificateDate">
 
-    <button type="submit">Save</button>
+    <input id="certificateCredential" placeholder="Credential URL">
+
+    <input id="certificateSkills" placeholder="Python, Automation, OOP">
+
+    <textarea id="certificateDescription"></textarea>
+
+    <select id="certificateFeatured">
+        <option value="false">No</option>
+        <option value="true">Yes</option>
+    </select>
+
+    <button type="submit" class="save-btn">
+        Save Certificate
+    </button>
 
 </form>
+
+<div id="certificatesList"></div>
