@@ -29,7 +29,7 @@ export async function setupExperienceForm() {
 
             query(
                 collection(db, "experience"),
-                orderBy("createdAt", "desc")
+                orderBy("sortDate", "desc")
             )
 
         );
@@ -225,7 +225,8 @@ Delete
 
                 {
                     ...experienceData,
-                    createdAt: Date.now()
+                    createdAt: Date.now(),
+                    sortDate: document.getElementById("duration").value
                 }
 
             );
