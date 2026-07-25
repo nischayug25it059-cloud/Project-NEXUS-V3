@@ -29,7 +29,7 @@ export async function setupExperienceForm() {
 
             query(
                 collection(db, "experience"),
-                orderBy("sortDate", "desc")
+                orderBy("sortDate", "asc")
             )
 
         );
@@ -170,6 +170,8 @@ Delete
 
         e.preventDefault();
 
+        const durationValue = document.getElementById("duration").value;
+
         const experienceData = {
 
             company:
@@ -178,8 +180,8 @@ Delete
             role:
                 document.getElementById("role").value,
 
-            duration:
-                document.getElementById("duration").value,
+            duration: durationValue,
+            sortDate: durationValue,
 
             description:
                 document.getElementById("description").value,
@@ -206,11 +208,10 @@ Delete
         if (editingExperienceId) {
 
             await updateDoc(
-
                 doc(db, "experience", editingExperienceId),
-
-                experienceData
-
+                {
+                    ...experienceData
+                }
             );
 
             editingExperienceId = null;
@@ -223,11 +224,12 @@ Delete
 
                 collection(db, "experience"),
 
+
                 {
                     ...experienceData,
-                    createdAt: Date.now(),
-                    sortDate: document.getElementById("duration").value
+                    createdAt: Date.now()
                 }
+
 
             );
 

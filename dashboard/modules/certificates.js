@@ -196,15 +196,11 @@ export async function setupCertificatesForm() {
         if (editingCertificateId) {
 
             await updateDoc(
-
-                doc(
-                    db,
-                    "certificates",
-                    editingCertificateId
-                ),
-
-                certificateData
-
+                doc(db, "experience", editingExperienceId),
+                {
+                    ...experienceData,
+                    sortDate: document.getElementById("duration").value
+                }
             );
 
             editingCertificateId = null;
