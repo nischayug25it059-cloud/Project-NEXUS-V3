@@ -1,17 +1,126 @@
-<h2>Skills</h2>
+<div class="dashboard-form">
 
-<form id="skillsForm">
+    <h2 class="form-title">
+        Add Skill
+    </h2>
 
-    <label>Skills (comma separated)</label>
+    <form id="skillForm">
 
-    <textarea
-        id="skillsList"
-        rows="8"
-        placeholder="HTML, CSS, JavaScript, Python, SQL, Power BI">
-    </textarea>
+        <div class="input-group">
+            <label>Skill Name</label>
+            <input
+                type="text"
+                id="skillName"
+                placeholder="Python"
+                required>
+        </div>
 
-    <button type="submit">
-        Save
-    </button>
+        <div class="input-group">
+            <label>Category</label>
 
-</form>
+            <select id="skillCategory">
+
+                <option value="Programming">Programming</option>
+
+                <option value="Database">Database</option>
+
+                <option value="Data Analytics">Data Analytics</option>
+
+                <option value="Tools">Tools</option>
+
+                <option value="Framework">Framework</option>
+
+                <option value="Other">Other</option>
+
+            </select>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Skill Percentage</label>
+
+            <input
+                type="range"
+                id="skillPercent"
+                min="0"
+                max="100"
+                value="80">
+
+            <span id="percentValue">80%</span>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Progress Bar Color</label>
+
+            <input
+                type="color"
+                id="skillColor"
+                value="#3B82F6">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Display Order</label>
+
+            <input
+                type="number"
+                id="skillOrder"
+                value="1">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Learning Status</label>
+
+            <select id="learningStatus">
+
+                <option value="Learning">
+                    🟢 Learning
+                </option>
+
+                <option value="Completed">
+                    ✅ Completed
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Featured Skill</label>
+
+            <select id="featuredSkill">
+
+                <option value="true">
+                    Yes
+                </option>
+
+                <option value="false">
+                    No
+                </option>
+
+            </select>
+
+        </div>
+
+        <button
+            type="submit"
+            class="save-btn">
+
+            Save Skill
+
+        </button>
+
+    </form>
+
+</div>
+
+<br><br>
+
+<div id="skillList"></div>
