@@ -103,7 +103,13 @@ async function loadSkills() {
 
                     <i class="${skill.icon}"></i>
 
-                    <h3>${skill.name}</h3>
+                    <h3>
+
+                    <i class="${skill.icon}"></i>
+
+                    <span>${skill.name}</span>
+
+                    </h3>
 
                 </div>
 

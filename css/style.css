@@ -2305,6 +2305,25 @@ CUSTOM CURSOR
     background:rgba(59,130,246,.08);
 
 }
+
+.skill-top h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.skill-top h3 i{
+
+    color:#60A5FA;
+
+    font-size:26px;
+
+}
+
 /* ===== Force Hide System Cursor ===== */
 
 html,
