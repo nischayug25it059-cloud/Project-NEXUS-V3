@@ -1,63 +1,39 @@
 <div class="dashboard-form">
 
-    <h2 class="form-title">
-        Add Skill
-    </h2>
+    <h2 class="form-title">Add Skill</h2>
+
+    <p class="form-subtitle">
+        Add and manage your portfolio skills.
+    </p>
 
     <form id="skillForm">
 
         <div class="input-group">
             <label>Skill Name</label>
-            <input
-                type="text"
-                id="skillName"
-                placeholder="Python"
-                required>
+            <input type="text" id="skillName" placeholder="Python" required>
         </div>
 
         <div class="input-group">
-            <label>Skill Icon (Emoji)</label>
-            <input
-                type="text"
-                id="skillIcon"
-                placeholder="🐍"
-                maxlength="2"
-                required>
+            <label>Font Awesome Icon</label>
+            <input type="text" id="skillIcon" placeholder="fa-brands fa-python" required>
         </div>
 
         <div class="input-group">
             <label>Percentage</label>
-            <input
-                type="number"
-                id="skillPercentage"
-                min="0"
-                max="100"
-                placeholder="90"
-                required>
+            <input type="number" id="skillPercentage" min="0" max="100" placeholder="90" required>
         </div>
 
         <div class="input-group">
             <label>Display Order</label>
-            <input
-                type="number"
-                id="skillOrder"
-                min="1"
-                placeholder="1"
-                required>
+            <input type="number" id="skillOrder" min="1" placeholder="1" required>
         </div>
 
-        <button
-            type="submit"
-            class="save-btn">
-
+        <button type="submit" class="save-btn">
             Save Skill
-
         </button>
 
     </form>
 
 </div>
-
-<br><br>
 
 <div id="skillList"></div>

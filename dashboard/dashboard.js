@@ -49,8 +49,7 @@ async function loadPage(page) {
 
         if (page === "skills") {
 
-            setupSkillsForm();
-
+            setupSkillsForm(); 
         }
 
         if (page === "projects") {

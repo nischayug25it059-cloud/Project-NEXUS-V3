@@ -1023,3 +1023,256 @@ select{
 }
 
 }
+
+/* ===========================
+   SKILLS CMS
+=========================== */
+
+#skillList{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+    margin-top:35px;
+}
+
+.skill-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:22px;
+    transition:.35s ease;
+}
+
+.skill-card:hover{
+    transform:translateY(-5px);
+    border-color:#3B82F6;
+    box-shadow:0 10px 30px rgba(59,130,246,.25);
+}
+
+.skill-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.skill-top .left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.skill-top i{
+    font-size:24px;
+    color:#3B82F6;
+}
+
+.skill-top h3{
+    margin:0;
+    font-size:20px;
+}
+
+.skill-top span{
+    font-size:18px;
+    font-weight:700;
+}
+
+.skill-progress{
+    width:100%;
+    height:10px;
+    background:rgba(255,255,255,.08);
+    border-radius:50px;
+    overflow:hidden;
+}
+
+.skill-progress div{
+    height:100%;
+    background:#3B82F6;
+    border-radius:50px;
+    transition:.5s;
+}
+
+.skill-order{
+    margin-top:15px;
+    color:#9CA3AF;
+    font-size:14px;
+}
+
+.skill-actions{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.skill-actions button{
+    flex:1;
+}
+
+/*==============================
+        SKILLS FORM
+==============================*/
+
+.dashboard-form{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:35px;
+    margin-bottom:35px;
+    backdrop-filter:blur(15px);
+}
+
+.form-title{
+    font-size:32px;
+    color:#fff;
+    margin-bottom:8px;
+}
+
+.form-subtitle{
+    color:#94A3B8;
+    margin-bottom:35px;
+}
+
+#skillForm{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    color:#fff;
+    font-weight:600;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+.input-group input{
+
+    width:100%;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:14px;
+
+    padding:15px 18px;
+
+    color:#fff;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus{
+
+    border-color:#3B82F6;
+
+    box-shadow:0 0 0 4px rgba(59,130,246,.15);
+
+    outline:none;
+
+}
+
+.save-btn{
+
+    width:220px;
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.save-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 30px rgba(59,130,246,.35);
+
+}
+
+@media(max-width:900px){
+
+#skillForm{
+
+grid-template-columns:1fr;
+
+}
+
+.save-btn{
+
+width:100%;
+
+}
+
+}
+
+.edit-btn,
+.delete-btn{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.edit-btn{
+
+    background:#2563EB;
+
+    color:white;
+
+}
+
+.edit-btn:hover{
+
+    background:#1D4ED8;
+
+}
+
+.delete-btn{
+
+    background:#DC2626;
+
+    color:white;
+
+}
+
+.delete-btn:hover{
+
+    background:#B91C1C;
+
+}
