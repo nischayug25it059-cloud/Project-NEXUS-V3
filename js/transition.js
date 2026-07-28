@@ -9,7 +9,7 @@ links.forEach(link => {
         href.startsWith("mailto:") ||
         href.startsWith("tel:") ||
         href.startsWith("http")
-    ) return;grewgwrsgrw
+    ) return;
 
     link.addEventListener("click", function(e){
 
