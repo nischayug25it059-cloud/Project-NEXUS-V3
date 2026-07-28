@@ -1,0 +1,19 @@
+.skill-card{
+
+    opacity:0;
+
+    transform:translateY(70px) scale(.9);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1);
+
+}
+
+.skill-card.show{
+
+    opacity:1;
+
+    transform:translateY(0) scale(1);
+
+}

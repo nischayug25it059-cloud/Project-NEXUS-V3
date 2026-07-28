@@ -37,8 +37,11 @@ async function loadSkills() {
             <div class="skill-top">
 
                 <h3>
+
                     <i class="${skill.icon}"></i>
+
                     ${skill.name}
+
                 </h3>
 
                 <span>${skill.percentage}%</span>
@@ -59,7 +62,66 @@ async function loadSkills() {
         `;
 
     });
+    
+
+        ScrollTrigger.refresh();
 
 }
 
 loadSkills();
+
+function initSkillAnimation(){
+
+    const observer = new IntersectionObserver((entries)=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                gsap.to(entry.target,{
+
+                    opacity:1,
+
+                    y:0,
+
+                    x:0,
+
+                    scale:1,
+
+                    duration:.8,
+
+                    ease:"power3.out"
+
+                });
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },{
+
+        threshold:.2
+
+    });
+
+    document.querySelectorAll(".skill-card").forEach((card,index)=>{
+
+        gsap.set(card,{
+
+            opacity:0,
+
+            y:70,
+
+            x:index%2===0?-40:40,
+
+            scale:.9
+
+        });
+
+        observer.observe(card);
+
+    });
+
+}

@@ -56,33 +56,7 @@ gsap.utils.toArray(".section-title").forEach(title=>{
 
 /* Cards */
 
-gsap.utils.toArray(
 
-".skill-card,.project-box,.certificate-slide,.timeline-card,.about-card"
-
-).forEach(card=>{
-
-    gsap.from(card,{
-
-        scrollTrigger:{
-
-            trigger:card,
-
-            start:"top 85%"
-
-        },
-
-        y:70,
-
-        opacity:0,
-
-        duration:1,
-
-        ease:"power4.out"
-
-    });
-
-});
 
 gsap.utils.toArray(".project-box").forEach(card => {
 
