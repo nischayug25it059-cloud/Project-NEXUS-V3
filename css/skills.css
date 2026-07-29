@@ -17,3 +17,35 @@
     transform:translateY(0) scale(1);
 
 }
+
+.skill-card{
+
+    opacity:0;
+
+    transform:translateY(60px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.22,1,.36,1);
+
+}
+
+.skill-card:nth-child(even){
+
+    transform:translateX(60px);
+
+}
+
+.skill-card:nth-child(odd){
+
+    transform:translateX(-60px);
+
+}
+
+.skill-card.show{
+
+    opacity:1;
+
+    transform:translate(0,0);
+
+}

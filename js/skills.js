@@ -62,35 +62,62 @@ async function loadSkills() {
         `;
 
     });
-    
 
-        ScrollTrigger.refresh();
+    function initSkillAnimation() {
+
+        const cards = document.querySelectorAll(".skill-card");
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+
+            threshold: 0.2
+
+        });
+
+        cards.forEach(card => observer.observe(card));
+
+    }
+
+    initSkillAnimation();
 
 }
 
 loadSkills();
 
-function initSkillAnimation(){
+function initSkillAnimation() {
 
-    const observer = new IntersectionObserver((entries)=>{
+    const observer = new IntersectionObserver((entries) => {
 
-        entries.forEach(entry=>{
+        entries.forEach(entry => {
 
-            if(entry.isIntersecting){
+            if (entry.isIntersecting) {
 
-                gsap.to(entry.target,{
+                gsap.to(entry.target, {
 
-                    opacity:1,
+                    opacity: 1,
 
-                    y:0,
+                    y: 0,
 
-                    x:0,
+                    x: 0,
 
-                    scale:1,
+                    scale: 1,
 
-                    duration:.8,
+                    duration: .8,
 
-                    ease:"power3.out"
+                    ease: "power3.out"
 
                 });
 
@@ -100,23 +127,23 @@ function initSkillAnimation(){
 
         });
 
-    },{
+    }, {
 
-        threshold:.2
+        threshold: .2
 
     });
 
-    document.querySelectorAll(".skill-card").forEach((card,index)=>{
+    document.querySelectorAll(".skill-card").forEach((card, index) => {
 
-        gsap.set(card,{
+        gsap.set(card, {
 
-            opacity:0,
+            opacity: 0,
 
-            y:70,
+            y: 70,
 
-            x:index%2===0?-40:40,
+            x: index % 2 === 0 ? -40 : 40,
 
-            scale:.9
+            scale: .9
 
         });
 
