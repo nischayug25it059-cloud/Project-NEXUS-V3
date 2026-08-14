@@ -581,3 +581,55 @@ CERTIFICATE HOVER
         grid-template-columns: 1fr;
     }
 }
+
+.projects-grid-page {
+    display: block;
+    width: 100%;
+}
+
+#projectsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #projectsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==============================
+   CERTIFICATES 2 x 2 GRID
+============================== */
+
+#certificatesContainer {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 40px !important;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+#certificatesContainer > * {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+}
+
+@media (max-width: 768px) {
+
+    #certificatesContainer {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .certificate-track {
+        grid-template-columns: 1fr;
+    }
+
+}

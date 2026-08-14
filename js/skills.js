@@ -75,20 +75,21 @@ async function loadSkills() {
 
                     entry.target.classList.add("show");
 
-                    observer.unobserve(entry.target);
+                } else {
+
+                    entry.target.classList.remove("show");
 
                 }
 
             });
 
-        }, {
+        }, { threshold: 0.2 });
 
-            threshold: 0.2
+        cards.forEach((card) => {
+
+            observer.observe(card);
 
         });
-
-        cards.forEach(card => observer.observe(card));
-
     }
 
     initSkillAnimation();
