@@ -1,11 +1,10 @@
-import { db } from "../firebase/firebase.js";
-
 import {
+    db,
     collection,
     getDocs,
     query,
     orderBy
-} from "firebase/firestore";
+} from "../firebase/firebase.js";
 
 const container = document.getElementById("certificatesContainer");
 
@@ -37,6 +36,13 @@ let certificates = [];
 
 async function loadCertificates() {
 
+    if (!container) {
+        console.error(
+            "certificatesContainer not found"
+        );
+        return;
+    }
+
     try {
 
         const q = query(
@@ -59,28 +65,29 @@ async function loadCertificates() {
 
         });
 
+        console.log(
+            "Certificates loaded:",
+            certificates
+        );
+
         renderCertificates("All");
 
     } catch (error) {
 
         console.error(
-            "Error loading certificates:",
+            "Certificate loading error:",
             error
         );
 
         container.innerHTML = `
-            <p class="certificate-error">
-                Unable to load certificates.
-            </p>
+            <div class="certificate-error">
+                <p>Unable to load certificates.</p>
+            </div>
         `;
-
     }
-
 }
 
 function renderCertificates(filter) {
-
-    if (!container) return;
 
     container.innerHTML = "";
 
@@ -94,7 +101,6 @@ function renderCertificates(filter) {
                     .toLowerCase()
                     .includes(filter.toLowerCase())
             );
-
     }
 
     if (filteredCertificates.length === 0) {
@@ -106,7 +112,6 @@ function renderCertificates(filter) {
         `;
 
         return;
-
     }
 
     filteredCertificates.forEach((data) => {
@@ -115,9 +120,11 @@ function renderCertificates(filter) {
             certificateImages[data.title] ||
             "assets/certificates/default.jpg";
 
-        const skillsArray = Array.isArray(data.skills)
-            ? data.skills
-            : String(data.skills || "")
+        const skillsData = data.skills || [];
+
+        const skillsArray = Array.isArray(skillsData)
+            ? skillsData
+            : String(skillsData)
                 .split(",")
                 .map(skill => skill.trim())
                 .filter(Boolean);
@@ -134,7 +141,7 @@ function renderCertificates(filter) {
 
                 <img
                     src="${image}"
-                    alt="${data.title}"
+                    alt="${data.title || "Certificate"}"
                     loading="lazy"
                 >
 
@@ -143,7 +150,9 @@ function renderCertificates(filter) {
             <div class="project-info">
 
                 <span class="project-category">
-                    ${data.featured ? "FEATURED CERTIFICATE" : "CERTIFICATE"}
+                    ${data.featured
+                        ? "FEATURED CERTIFICATE"
+                        : "CERTIFICATE"}
                 </span>
 
                 <h2>
@@ -163,15 +172,15 @@ function renderCertificates(filter) {
                     ${
                         data.credential
                             ? `
-                            <a
-                                href="${data.credential}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="project-action"
-                            >
-                                📄 View Certificate
-                            </a>
-                            `
+                        <a
+                            href="${data.credential}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="project-action"
+                        >
+                            📄 View Certificate
+                        </a>
+                        `
                             : ""
                     }
 
@@ -182,9 +191,7 @@ function renderCertificates(filter) {
         </div>
 
         `;
-
     });
-
 }
 
 filterButtons.forEach((button) => {
