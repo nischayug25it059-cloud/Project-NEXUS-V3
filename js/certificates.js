@@ -1,84 +1,291 @@
-const certificateTrack = document.querySelector(".certificate-track");
-const certificateSlides = document.querySelectorAll(".certificate-slide");
+import { db } from "../firebase/firebase.js";
 
-const certificateNext = document.querySelector(".certificate-next");
-const certificatePrev = document.querySelector(".certificate-prev");
+import {
+    collection,
+    getDocs,
+    query,
+    where,
+} from "firebase/firestore";
 
-const certificateDots = document.querySelectorAll(".certificate-dots .dot");
 
-if (
-    certificateTrack &&
-    certificateSlides.length &&
-    certificateNext &&
-    certificatePrev &&
-    certificateDots.length
-) {
+const track =
+    document.querySelector(
+        ".certificate-track"
+    );
 
-    let certificateIndex = 0;
+const nextBtn =
+    document.querySelector(
+        ".certificate-next"
+    );
 
-    function updateCertificateSlider() {
+const prevBtn =
+    document.querySelector(
+        ".certificate-prev"
+    );
 
-        certificateTrack.style.transform =
-            `translateX(-${certificateIndex * 100}%)`;
+const dotsContainer =
+    document.querySelector(
+        ".certificate-dots"
+    );
 
-        certificateDots.forEach(dot => dot.classList.remove("active"));
 
-        certificateDots[certificateIndex].classList.add("active");
+const certificateImages = {
 
-    }
+    "Complete Python Bootcamp":
+        "assets/certificates/python.jpg",
 
-    certificateNext.addEventListener("click", () => {
+    "SQL Advanced":
+        "assets/certificates/sql.jpg",
 
-        certificateIndex++;
+    "Google Data Analytics":
+        "assets/certificates/google.jpg",
 
-        if (certificateIndex >= certificateSlides.length) {
+    "Power BI Masterclass":
+        "assets/certificates/powerbi.jpg"
 
-            certificateIndex = 0;
+};
 
-        }
 
-        updateCertificateSlider();
+async function loadFeaturedCertificates() {
 
-    });
+    if (!track) return;
 
-    certificatePrev.addEventListener("click", () => {
 
-        certificateIndex--;
+    const q = query(
+        collection(db, "certificates"),
+        where("featured", "==", true)
+    );
 
-        if (certificateIndex < 0) {
 
-            certificateIndex = certificateSlides.length - 1;
+    const snapshot = await getDocs(q);
 
-        }
+    const certificates = [];
 
-        updateCertificateSlider();
+    snapshot.forEach((doc) => {
 
-    });
-
-    certificateDots.forEach((dot, i) => {
-
-        dot.addEventListener("click", () => {
-
-            certificateIndex = i;
-
-            updateCertificateSlider();
-
+        certificates.push({
+            id: doc.id,
+            ...doc.data()
         });
 
     });
 
+    certificates.sort((a, b) => {
+        return (a.featuredOrder ?? 9999) - (b.featuredOrder ?? 9999);
+    });
+
+    track.innerHTML = "";
+
+    certificates.forEach((certificate) => {
+
+
+        const image =
+            certificateImages[
+            certificate.title
+            ] ||
+            certificate.image ||
+            "assets/certificates/default.jpg";
+
+
+        const skillsData = certificate.skills || [];
+
+        const skillsArray = Array.isArray(skillsData)
+            ? skillsData
+            : String(skillsData)
+                .split(",")
+                .map(skill => skill.trim())
+                .filter(Boolean);
+
+        const skills = skillsArray
+            .map(skill => `<span>${skill}</span>`)
+            .join("");
+
+
+        track.innerHTML += `
+
+    <article class="featured-slide certificate-slide">
+
+        <div class="featured-image">
+
+            <img
+                src="${image}"
+                alt="${certificate.title || "Certificate"}"
+            >
+
+        </div>
+
+
+        <div class="featured-content">
+
+            <span class="featured-tag">
+                FEATURED CERTIFICATE
+            </span>
+
+
+            <h3>
+                ${certificate.title || "Certificate"}
+            </h3>
+
+
+            <p>
+                ${certificate.description || ""}
+            </p>
+
+
+            <div class="featured-stack">
+
+                ${skills}
+
+            </div>
+
+
+            <div class="featured-buttons">
+
+                ${certificate.credential
+                ? `
+                        <a
+                            href="${certificate.credential}"
+                            target="_blank"
+                            class="primary-btn"
+                        >
+                            View Certificate
+                        </a>
+                    `
+                : ""
+            }
+
+            </div>
+
+        </div>
+
+    </article>
+
+`;
+
+    });
+
+
+    setupCertificateSlider();
+
+}
+
+
+function setupCertificateSlider() {
+
+    const slides =
+        document.querySelectorAll(
+            ".certificate-slide"
+        );
+
+
+    if (!slides.length) return;
+
+
+    let index = 0;
+
+
+    dotsContainer.innerHTML = "";
+
+
+    slides.forEach((slide, i) => {
+
+        const dot =
+            document.createElement("span");
+
+        dot.className =
+            i === 0
+                ? "dot active"
+                : "dot";
+
+
+        dot.addEventListener(
+            "click",
+            () => {
+
+                index = i;
+
+                updateSlider();
+
+            }
+        );
+
+
+        dotsContainer.appendChild(dot);
+
+    });
+
+
+    const dots =
+        dotsContainer.querySelectorAll(".dot");
+
+
+    function updateSlider() {
+
+        track.style.transform =
+            `translateX(-${index * 100}%)`;
+
+
+        dots.forEach(dot =>
+            dot.classList.remove("active")
+        );
+
+
+        dots[index]?.classList.add("active");
+
+    }
+
+
+    nextBtn?.addEventListener(
+        "click",
+        () => {
+
+            index++;
+
+            if (index >= slides.length) {
+
+                index = 0;
+
+            }
+
+            updateSlider();
+
+        }
+    );
+
+
+    prevBtn?.addEventListener(
+        "click",
+        () => {
+
+            index--;
+
+            if (index < 0) {
+
+                index = slides.length - 1;
+
+            }
+
+            updateSlider();
+
+        }
+    );
+
+
     setInterval(() => {
 
-        certificateIndex++;
+        index++;
 
-        if (certificateIndex >= certificateSlides.length) {
+        if (index >= slides.length) {
 
-            certificateIndex = 0;
+            index = 0;
 
         }
 
-        updateCertificateSlider();
+        updateSlider();
 
     }, 6000);
 
 }
+
+
+loadFeaturedCertificates();

@@ -5,6 +5,7 @@ import { setupProjectsForm } from "./modules/projects.js";
 import { setupCertificatesForm } from "./modules/certificates.js";
 import { setupExperienceForm } from "./modules/experience.js";
 import { db, auth, provider } from "../firebase/firebase.js";
+import { setupFeaturedForm } from "./modules/featured.js";
 
 
 if (localStorage.getItem("loggedIn") !== "true") {
@@ -49,7 +50,7 @@ async function loadPage(page) {
 
         if (page === "skills") {
 
-            setupSkillsForm(); 
+            setupSkillsForm();
         }
 
         if (page === "projects") {
@@ -67,6 +68,12 @@ async function loadPage(page) {
         if (page === "experience") {
 
             setupExperienceForm();
+
+        }
+
+        if (page === "featured") {
+
+            setupFeaturedForm();
 
         }
 
