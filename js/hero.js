@@ -5,62 +5,25 @@
 const hero = document.querySelector(".hero");
 const profile = document.querySelector(".profile-wrapper");
 const ring = document.querySelector(".profile-ring");
- const heroLeft = document.querySelector(".hero-left");
+const heroLeft = document.querySelector(".hero-left");
 
 if (hero && profile) {
 
-    hero.addEventListener("mousemove", (e) => {
+    document.addEventListener("mousemove", (e) => {
+        const mouseX = e.clientX / window.innerWidth - 0.5;
+        const mouseY = e.clientY / window.innerHeight - 0.5;
 
-        const rect = hero.getBoundingClientRect();
+        // ONLY the blue profile ring moves
+        const moveX = mouseX * 10;
+        const moveY = mouseY * 10;
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const rotateY = ((x / rect.width) - 0.5) * 22;
-        const rotateX = ((y / rect.height) - 0.5) * -22;
-
-        gsap.to(heroLeft, {
-
-            x: rotateY * 1.5,
-
-            y: -rotateX * 1.5,
-
-            duration: .8,
-
-            ease: "power3.out"
-
+        gsap.to(".profile-ring", {
+            x: moveX,
+            y: moveY,
+            duration: 0.8,
+            ease: "power2.out",
+            overwrite: true
         });
-
-        gsap.to(profile, {
-
-            rotateX,
-
-            rotateY,
-
-            duration: .7,
-
-            ease: "power3.out",
-
-            transformPerspective: 1400,
-
-            transformOrigin: "center"
-
-        });
-
-        gsap.to(ring, {
-
-            x: rotateY * 2,
-
-            y: -rotateX * 2,
-
-            duration: .8,
-
-            ease: "power3.out"
-
-        });
-
-       
-
     });
 
     hero.addEventListener("mouseleave", () => {
