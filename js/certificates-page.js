@@ -116,9 +116,7 @@ function renderCertificates(filter) {
 
     filteredCertificates.forEach((data) => {
 
-        const image =
-            certificateImages[data.title] ||
-            "assets/certificates/default.jpg";
+        const image = certificateImages[data.title] || "";
 
         const skillsData = data.skills || [];
 
