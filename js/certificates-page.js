@@ -1,3 +1,6 @@
+import "../js/loader.js";
+import "../js/cursor.js";
+
 import {
     db,
     collection,
