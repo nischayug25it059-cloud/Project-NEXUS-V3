@@ -6,6 +6,7 @@ import { setupCertificatesForm } from "./modules/certificates.js";
 import { setupExperienceForm } from "./modules/experience.js";
 import { db, auth, provider } from "../firebase/firebase.js";
 import { setupFeaturedForm } from "./modules/featured.js";
+import { collection, getDocs } from "firebase/firestore";
 
 
 if (localStorage.getItem("loggedIn") !== "true") {
@@ -35,6 +36,10 @@ async function loadPage(page) {
         const html = await response.text();
 
         content.innerHTML = html;
+
+        if (page === "dashboard-home") {
+            loadDashboardStats();
+        }
 
         if (page === "hero") {
 
@@ -100,6 +105,75 @@ menuItems.forEach(item => {
     });
 
 });
+
+async function loadDashboardStats() {
+
+    try {
+
+        const [
+            projectsSnapshot,
+            skillsSnapshot,
+            certificatesSnapshot,
+            experienceSnapshot
+        ] = await Promise.all([
+
+            getDocs(collection(db, "projects")),
+            getDocs(collection(db, "skills")),
+            getDocs(collection(db, "certificates")),
+            getDocs(collection(db, "experience"))
+
+        ]);
+
+        const projectCount =
+            document.getElementById("projectCount");
+
+        const skillCount =
+            document.getElementById("skillCount");
+
+        const certificateCount =
+            document.getElementById("certificateCount");
+
+        const experienceCount =
+            document.getElementById("experienceCount");
+
+
+        if (projectCount) {
+            projectCount.textContent =
+                projectsSnapshot.size;
+        }
+
+        if (skillCount) {
+            skillCount.textContent =
+                skillsSnapshot.size;
+        }
+
+        if (certificateCount) {
+            certificateCount.textContent =
+                certificatesSnapshot.size;
+        }
+
+        if (experienceCount) {
+            experienceCount.textContent =
+                experienceSnapshot.size;
+        }
+
+
+        console.log("Dashboard stats loaded:", {
+            projects: projectsSnapshot.size,
+            skills: skillsSnapshot.size,
+            certificates: certificatesSnapshot.size,
+            experience: experienceSnapshot.size
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Error loading dashboard stats:",
+            error
+        );
+
+    }
+}
 
 // Default Page
 
