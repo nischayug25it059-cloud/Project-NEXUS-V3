@@ -1,0 +1,13 @@
+.owner-dot {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.owner-dot:hover {
+    color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.5);
+}
