@@ -8,7 +8,16 @@ export default defineConfig({
                 main: resolve(__dirname, "index.html"),
                 projects: resolve(__dirname, "projects.html"),
                 certificates: resolve(__dirname, "certificates.html"),
-                dashboard: resolve(__dirname, "dashboard/dashboard.html"),
+
+                dashboard: resolve(
+                    __dirname,
+                    "dashboard/dashboard.html"
+                ),
+
+                login: resolve(
+                    __dirname,
+                    "dashboard/login.html"
+                ),
             },
         },
     },
